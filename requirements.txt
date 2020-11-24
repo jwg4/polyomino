@@ -1,0 +1,2 @@
+exact-cover-np==0.0.1
+numpy==1.19.4
