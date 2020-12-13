@@ -1,2 +1,2 @@
-exact-cover-np==0.0.1
+exact-cover-np @ file:///home/jack/polyomino/exact_cover_np-0.1-cp37-cp37m-linux_armv7l.whl
 numpy==1.19.4
