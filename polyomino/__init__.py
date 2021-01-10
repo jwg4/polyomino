@@ -1,6 +1,6 @@
 import numpy as np
 
-from exact_cover_np import get_exact_cover
+from exact_cover import get_exact_cover
 
 
 def selector_vector(n, i):
