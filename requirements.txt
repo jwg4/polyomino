@@ -1,2 +1,2 @@
-exact-cover==0.2.1
+exact-cover==0.2.3
 numpy==1.19.5
