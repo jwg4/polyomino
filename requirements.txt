@@ -1,2 +1,0 @@
-exact-cover==0.2.5
-numpy==1.19.5

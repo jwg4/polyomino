@@ -7,8 +7,14 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
+exact-cover = "0.3.2a2"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.1"
+
+[tool.poetry.scripts]
+test = 'build:run_tests'
+doctest = 'build:run_doctests'
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
