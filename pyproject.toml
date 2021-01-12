@@ -7,7 +7,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
-exact-cover = "0.4.0a3"
+exact-cover = "0.4.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"
