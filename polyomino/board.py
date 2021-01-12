@@ -23,10 +23,21 @@ class Shape(object):
         return [sq in tile for sq in self.squares]
 
     def remove(self, square):
+        if square not in self.squares:
+            raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
         return Irregular([sq for sq in self.squares if sq != square])
 
     def tile_with(self, tiles):
         return TilingProblem(self, tiles)
+
+    def tile_with_many(self, tile):
+        count = len(self.squares)
+        cover = len(tile)
+        if count % cover != 0:
+            raise Exception("We can't cover %d squares exactly with a tile of size %d" % (count, cover))
+        else:
+            tiling_set = [tile] * (count // cover)
+            return self.tile_with(tiling_set)
 
 
 class Irregular(Shape):
