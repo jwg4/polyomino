@@ -1,5 +1,6 @@
 import numpy as np
 
+from .problem import TilingProblem
 from .transform import rotate
 
 
@@ -23,6 +24,9 @@ class Shape(object):
 
     def remove(self, square):
         return Irregular([sq for sq in self.squares if sq != square])
+
+    def tile_with(self, tiles):
+        return TilingProblem(self, tiles)
 
 
 class Irregular(Shape):
