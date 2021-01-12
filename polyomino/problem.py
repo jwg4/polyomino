@@ -35,6 +35,8 @@ class TilingProblem(object):
         key, array = tiling_to_array(self.tiles, self.board)
         solution = get_exact_cover(array)
         self.solution = [key[s] for s in solution]
+        if self.solution:
+            return self.solution
 
     def format_output(self):
         return self.board.format_tiling(self.solution)
