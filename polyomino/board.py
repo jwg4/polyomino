@@ -3,20 +3,7 @@ import numpy as np
 from .transform import rotate
 
 
-class Rectangle(object):
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    @property
-    def squares(self):
-        for i in range(0, self.x):
-            for j in range(0, self.y):
-                yield (i, j)
-
-    def is_in(self, square):
-        return 0 <= square[0] < self.x and 0 <= square[1] < self.y
-
+class Shape(object):
     def is_contained(self, tile):
         return all(self.is_in(sq) for sq in tile)
 
@@ -33,6 +20,36 @@ class Rectangle(object):
 
     def bit_vector(self, tile):
         return [sq in tile for sq in self.squares]
+
+    def remove(self, square):
+        return Irregular([sq for sq in self.squares if sq != square])
+
+
+class Irregular(Shape):
+    def __init__(self, squares):
+        self._squares = squares
+
+    @property
+    def squares(self):
+        return self._squares
+
+    def is_in(self, square):
+        return square in self._squares
+
+
+class Rectangle(Shape):
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    @property
+    def squares(self):
+        for i in range(0, self.x):
+            for j in range(0, self.y):
+                yield (i, j)
+
+    def is_in(self, square):
+        return 0 <= square[0] < self.x and 0 <= square[1] < self.y
 
     def format_row_sides(self, row):
         return " ".join("|" if r else " " for r in row)
@@ -65,3 +82,11 @@ class Rectangle(object):
     def format_tiling(self, tiling):
         h, v = self.calculate_tiling(tiling)
         return "\n".join(self.format_tiling_lines(h, v))
+
+
+class Chessboard(Rectangle):
+    x = 8
+    y = 8
+
+    def __init__(self):
+        pass
