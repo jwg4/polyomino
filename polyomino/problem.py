@@ -2,6 +2,8 @@ import numpy as np
 
 from exact_cover import get_exact_cover
 
+from .solution import Solution
+
 
 def selector_vector(n, i):
     return [i == j for j in range(0, n)]
@@ -34,9 +36,6 @@ class TilingProblem(object):
     def solve(self):
         key, array = tiling_to_array(self.tiles, self.board)
         solution = get_exact_cover(array)
-        self.solution = [key[s] for s in solution]
-        if self.solution:
-            return self.solution
-
-    def format_output(self):
-        return self.board.format_tiling(self.solution)
+        tiling = [key[s] for s in solution]
+        if tiling:
+            return Solution(tiling, self.board)
