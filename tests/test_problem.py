@@ -7,4 +7,4 @@ def test_solve_simple():
     problem = Irregular(squares).tile_with_many(DOMINO)
     solution = problem.solve()
     expected = [[(0, 0), (0, 1)], [(1, 1), (1, 2)]]
-    assert solution == expected
+    assert solution.tiling == expected
