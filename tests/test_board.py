@@ -30,3 +30,8 @@ def test_tile_with_many_size_check():
     with pytest.raises(Exception):
         board.tile_with_many([(0, 0), (1, 0)])
 
+def test_adjusted_square_irregular():
+    squares = [(3, -2), (3, -1), (4, -1), (4, 0), (4, 1)]
+    board = Irregular(squares)
+    expected = [(0, 0), (0, 1), (1, 1), (1, 2), (1, 3)]
+    assert board.adjusted == expected

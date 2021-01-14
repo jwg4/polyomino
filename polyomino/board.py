@@ -41,12 +41,24 @@ class Shape(object):
 
 
 class Irregular(Shape):
+    _adjusted = None
+
     def __init__(self, squares):
         self._squares = squares
 
     @property
     def squares(self):
         return self._squares
+
+    @property
+    def adjusted(self):
+        if self._adjusted is None:
+            self.min_y = min(y for x, y in self.squares)
+            self.min_x = min(x for x, y in self.squares)
+            self._adjusted = [
+                (x - self.min_x, y - self.min_y) for x, y in self.squares
+            ]
+        return self._adjusted
 
     def is_in(self, square):
         return square in self._squares
