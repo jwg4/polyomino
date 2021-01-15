@@ -1,5 +1,13 @@
 DOMINO = [(0, 0), (0, 1)]
 
+TROMINOS = {
+    'Straight': [(0, 0), (0, 1), (0, 2)],
+    'Right':    [(0, 0), (0, 1), (1, 1)]
+}
+
+STRAIGHT_TROMINO = TROMINOS['Straight']
+RIGHT_TROMINO = TROMINOS['Right']
+
 TETROMINOS = {
     'Square': [(0, 0), (0, 1), (1, 0), (1, 1)],
     'T':      [(0, 0), (0, 1), (1, 0), (2, 0)],

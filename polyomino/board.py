@@ -113,6 +113,38 @@ class Irregular(Shape):
         return "\n".join(self.format_tiling_lines(h, v))
 
 
+class DeletedRectangle(Irregular):
+    def __init__(self, whole, deleted):
+        self.whole = whole
+        self.deleted = deleted
+        super().__init__([sq for sq in self.whole.squares if not sq in self.deleted])
+
+    def remove(self, square):
+        if square not in self.squares:
+            raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
+        return DeletedRectangle(self.whole, self.deleted + [square])
+
+    @property
+    def interior_deleted(self):
+        return (
+            (x, y) for x, y in self.deleted 
+            if x > self.min_x and x < self.max_x
+            and y > self.min_y and y < self.max_y
+        )
+
+    def format_row_sides(self, row, row_y):
+        line = list(super().format_row_sides(row))
+        for x, y in self.interior_deleted:
+            if y == row_y:
+                line[2 * x + 1] = 'X'
+        return "".join(line)
+
+    def format_tiling_lines(self, h, v):
+        for i in range(self.min_y, self.max_y + 1):
+            yield self.format_row_upper(h[i])
+            yield self.format_row_sides(v[i - self.min_y], i)
+        yield self.format_row_upper(h[self.max_y - self.min_y + 1])
+
 
 class Rectangle(Shape):
     def __init__(self, x, y):
@@ -159,6 +191,11 @@ class Rectangle(Shape):
     def format_tiling(self, tiling):
         h, v = self.calculate_tiling(tiling)
         return "\n".join(self.format_tiling_lines(h, v))
+
+    def remove(self, square):
+        if square not in self.squares:
+            raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
+        return DeletedRectangle(self,[square])
 
 
 class Chessboard(Rectangle):
