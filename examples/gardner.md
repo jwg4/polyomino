@@ -4,6 +4,7 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 >>> from polyomino.constant import MONOMINO, DOMINO
 >>> from polyomino.constant import RIGHT_TROMINO, STRAIGHT_TROMINO
 >>> from polyomino.constant import ASYMMETRICAL_TETROMINOS
+>>> from polyomino.constant import TETROMINOS, PENTOMINOS
 >>> from polyomino.tileset import many
 
 
@@ -99,3 +100,23 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 
 >>> [name for name in ASYMMETRICAL_TETROMINOS if Chessboard().tile_with_many(ASYMMETRICAL_TETROMINOS[name]).solve() is None]
 ['S', 'Z']
+
+>>> print(Chessboard().tile_with(list(PENTOMINOS.values()) + [TETROMINOS['Square']]).solve().display())
++-+-+-+-+-+-+-+-+
+|   |     |     |
++ + + +-+-+ +-+ +
+|   | |   | | | |
++-+-+ + +-+-+ +-+
+| | | | | |     |
++ + +-+ + +-+ +-+
+| | |   |   | | |
++ + +-+-+ +-+-+ +
+| |   | | |     |
++ +-+ + + +-+-+ +
+| | | | | |   | |
++ + +-+ +-+ +-+-+
+| |   | |   |   |
++-+ +-+ + +-+ + +
+|   |   | |     |
++-+-+-+-+-+-+-+-+
+
