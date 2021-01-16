@@ -8,6 +8,10 @@ class Shape(object):
     def is_contained(self, tile):
         return all(self.is_in(sq) for sq in tile)
 
+    @property
+    def count(self):
+        return len(self.squares)
+
     def positions(self, tile):
         reference = tile[0]
         for sq in self.squares:
@@ -31,12 +35,11 @@ class Shape(object):
         return TilingProblem(self, tiles)
 
     def tile_with_many(self, tile):
-        count = len(self.squares)
         cover = len(tile)
-        if count % cover != 0:
+        if self.count % cover != 0:
             raise Exception("We can't cover %d squares exactly with a tile of size %d" % (count, cover))
         else:
-            tiling_set = [tile] * (count // cover)
+            tiling_set = [tile] * (self.count // cover)
             return self.tile_with(tiling_set)
 
 
@@ -153,6 +156,9 @@ class Rectangle(Shape):
 
     @property
     def squares(self):
+        return list(self.gen_squares())
+
+    def gen_squares(self):
         for i in range(0, self.x):
             for j in range(0, self.y):
                 yield (i, j)

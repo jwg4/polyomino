@@ -1,3 +1,5 @@
+MONOMINO = [(0, 0)]
+
 DOMINO = [(0, 0), (0, 1)]
 
 TROMINOS = {

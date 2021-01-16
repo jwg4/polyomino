@@ -53,3 +53,22 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 +-+-+-+ + +-+-+-+
 |     | | |     |
 +-+-+-+-+-+-+-+-+
+
+#>>> print(Chessboard().tile_with_many(STRAIGHT_TROMINO).and_exactly(1, MONOMINO).solve().display())
++-+-+-+-+-+-+-+-+
+| | |     | | | |
++ + +-+-+-+ + + +
+| | |     | | | |
++ + +-+-+-+ + + +
+| | | | | | | | |
++-+-+-+ + +-+-+-+
+| | | | | | | | |
++ + + + + + + + +
+| | | | | | | | |
++ + + +-+-+ + + +
+| | | | | | | | |
++-+-+-+ + +-+-+-+
+|     | | |     |
++-+-+-+ + +-+-+-+
+|     | | |     |
++-+-+-+-+-+-+-+-+
