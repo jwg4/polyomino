@@ -21,6 +21,10 @@ class Tileset(object):
         return self.fixed_total + self.optional_total
 
     @property
+    def selector_size(self):
+        return len(self.mandatory) + len(self.optional)
+
+    @property
     def flex_gcd(self):
         return gcd_list(
             [len(tile) for tile in self.optional] + 
@@ -39,6 +43,30 @@ class Tileset(object):
         g = self.flex_gcd
         if r != 0 and r % g != 0:
             raise CoverWithWrongModulus(n, self.fixed_total, g)
+
+    def selector_vector(self, i):
+        return [i == j for j in range(0, self.selector_size)]
+
+    def empty_vector(self):
+        return [False] * self.selector_size
+ 
+    def vectors(self):
+        i = 0
+        for tile in self.mandatory:
+            selector = self.selector_vector(i)
+            yield tile, selector, False
+            i = i + 1
+        for tile in self.optional:
+            selector = self.selector_vector(i)
+            yield tile, selector, True
+            i = i + 1
+        for tile in self.filler:
+            selector = self.empty_vector()
+            yield tile, selector, False
+
+    def and_exactly(self, count, tile):
+        mandatory = self.mandatory + [tile] * count
+        return Tileset(mandatory, self.optional, self.filler)
 
 
 def many(tile):
