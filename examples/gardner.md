@@ -1,7 +1,8 @@
 These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions' by Martin Gardner.
 
 >>> from polyomino.board import Chessboard, Rectangle
->>> from polyomino.constant import DOMINO, STRAIGHT_TROMINO
+>>> from polyomino.constant import MONOMINO, DOMINO, STRAIGHT_TROMINO
+>>> from polyomino.tileset import many
 
 
 > ...
@@ -54,21 +55,21 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 |     | | |     |
 +-+-+-+-+-+-+-+-+
 
-#>>> print(Chessboard().tile_with_many(STRAIGHT_TROMINO).and_exactly(1, MONOMINO).solve().display())
+>>> print(Chessboard().tile_with_set(many(STRAIGHT_TROMINO).and_exactly(1, MONOMINO)).solve().display())
 +-+-+-+-+-+-+-+-+
-| | |     | | | |
-+ + +-+-+-+ + + +
-| | |     | | | |
-+ + +-+-+-+ + + +
-| | | | | | | | |
-+-+-+-+ + +-+-+-+
 | | | | | | | | |
 + + + + + + + + +
 | | | | | | | | |
-+ + + +-+-+ + + +
++ + + + + + + + +
 | | | | | | | | |
-+-+-+-+ + +-+-+-+
-|     | | |     |
-+-+-+-+ + +-+-+-+
-|     | | |     |
++-+-+-+-+-+-+-+-+
+| | | | | |     |
++ + + + + +-+-+-+
+| | | | | |     |
++ + + + + +-+-+-+
+| | | | | | | | |
++-+-+-+-+-+-+ + +
+|     |     | | |
++-+-+-+-+-+-+ + +
+|     |     | | |
 +-+-+-+-+-+-+-+-+
