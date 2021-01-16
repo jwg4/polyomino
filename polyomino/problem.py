@@ -9,7 +9,7 @@ def tiling_to_problem(tileset, shape):
     key = []
     data = []
     for tile, selector, optional in tileset.vectors():
-        for translated in shape.positions(tile):
+        for translated in shape.positions(tile, tileset.reflections):
             key.append(translated)
             vector = selector + shape.bit_vector(translated)
             data.append(vector)

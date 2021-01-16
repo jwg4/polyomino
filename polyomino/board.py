@@ -2,7 +2,7 @@ import numpy as np
 
 from .problem import TilingProblem
 from .tileset import exactly, many
-from .transform import rotate
+from .transform import rotations
 
 
 class Shape(object):
@@ -13,10 +13,10 @@ class Shape(object):
     def count(self):
         return len(self.squares)
 
-    def positions(self, tile):
+    def positions(self, tile, with_reflections=False):
         reference = tile[0]
         for sq in self.squares:
-            for rotated in rotate(tile):
+            for rotated in rotations(tile, with_reflections):
                 translated = [
                     (x - reference[0] + sq[0], y - reference[1] + sq[1])
                     for x, y in rotated
@@ -31,6 +31,13 @@ class Shape(object):
         if square not in self.squares:
             raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
         return Irregular([sq for sq in self.squares if sq != square])
+
+    def remove_all(self, squares):
+        for square in squares:
+            if square not in self.squares:
+                raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
+        return Irregular([sq for sq in self.squares if sq not in squares])
+        
 
     def tile_with(self, tiles):
         return self.tile_with_set(exactly(tiles))
@@ -126,6 +133,12 @@ class DeletedRectangle(Irregular):
         if square not in self.squares:
             raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
         return DeletedRectangle(self.whole, self.deleted + [square])
+    
+    def remove_all(self, squares):
+        for square in squares:
+            if square not in self.squares:
+                raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
+        return DeletedRectangle(self.whole, self.deleted + squares)
 
     @property
     def interior_deleted(self):
@@ -201,7 +214,14 @@ class Rectangle(Shape):
     def remove(self, square):
         if square not in self.squares:
             raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
-        return DeletedRectangle(self,[square])
+        return DeletedRectangle(self, [square])
+    
+    def remove_all(self, squares):
+        for square in squares:
+            if square not in self.squares:
+                raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
+        return DeletedRectangle(self, squares)
+
 
 
 class Chessboard(Rectangle):

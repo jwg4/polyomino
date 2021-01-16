@@ -3,10 +3,11 @@ from .utils import gcd_list
 
 
 class Tileset(object):
-    def __init__(self, mandatory, optional, filler):
+    def __init__(self, mandatory, optional, filler, reflections=False):
         self.mandatory = mandatory  # exactly 1
         self.optional = optional    # either 1 or 0
         self.filler = filler        # any nonnegative number
+        self.reflections = reflections
 
     @property
     def fixed_total(self):
@@ -70,6 +71,9 @@ class Tileset(object):
 
     def and_one(self, tile):
         return self.and_repeated_exactly(1, tile)
+
+    def with_reflections(self):
+        return Tileset(self.mandatory, self.optional, self.filler, True)
 
 
 def many(tile):
