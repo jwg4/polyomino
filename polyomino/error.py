@@ -9,7 +9,7 @@ class CoverWithWrongSize(PolyominoError):
 
 
 class CoverWithWrongModulus(PolyominoError):
-    def __init__(self, board_size, fixed_size, counts):
+    def __init__(self, board_size, fixed_size, gcd):
         self.board_size = board_size
-        self.cover_size = fixed_size
-        self.counts = counts
+        self.fixed_size = fixed_size
+        self.gcd = gcd

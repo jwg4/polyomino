@@ -1,6 +1,7 @@
 import numpy as np
 
 from .problem import TilingProblem
+from .tileset import exactly, many
 from .transform import rotate
 
 
@@ -32,15 +33,14 @@ class Shape(object):
         return Irregular([sq for sq in self.squares if sq != square])
 
     def tile_with(self, tiles):
-        return TilingProblem(self, tiles)
+        return self.tile_with_set(exactly(tiles))
 
     def tile_with_many(self, tile):
-        cover = len(tile)
-        if self.count % cover != 0:
-            raise Exception("We can't cover %d squares exactly with a tile of size %d" % (count, cover))
-        else:
-            tiling_set = [tile] * (self.count // cover)
-            return self.tile_with(tiling_set)
+        return self.tile_with_set(many(tile))
+
+    def tile_with_set(self, tileset):
+        tileset.check(self)
+        return TilingProblem(self, tileset)
 
 
 class Irregular(Shape):

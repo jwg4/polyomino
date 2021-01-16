@@ -3,40 +3,47 @@ from .utils import gcd_list
 
 
 class Tileset(object):
-    def __init__(self, tile_rules):
-        self.tile_rules = tile_rules
-
-    @property
-    def fixed_rules(self):
-        for tile, count in self.tile_rules:
-            if count > 0:
-                yield tile, count
+    def __init__(self, mandatory, optional, filler):
+        self.mandatory = mandatory  # exactly 1
+        self.optional = optional    # either 1 or 0
+        self.filler = filler        # any nonnegative number
 
     @property
     def fixed_total(self):
-        return sum(len(tile) * count for tile, count in self.fixed_rules)
+        return sum(len(tile) for tile in self.mandatory)
 
     @property
-    def flex_rules(self):
-        for tile, count in self.tile_rules:
-            if count <= 0:
-                yield tile, count
+    def optional_total(self):
+        return sum(len(tile) for tile in self.optional)
+
+    @property
+    def max_total(self):
+        return self.fixed_total + self.optional_total
 
     @property
     def flex_gcd(self):
-        return gcd_list([len(tile) for tile, count in self.flex_rules])
+        return gcd_list(
+            [len(tile) for tile in self.optional] + 
+            [len(tile) for tile in self.filler]
+        )
     
     def check(self, board):
         n = board.count
+        if self.fixed_total > n:
+            raise CoverWithWrongSize(n, self.fixed_total)
+        if not self.filler:
+            if self.max_total < n:
+                raise CoverWithWrongSize(n, self.fixed_total)
+        
         r = n - self.fixed_total
-        if r < 0:
-            raise CoverWithWrongSize(n, self.fixed_total)
-        if r > 0 and not list(self.flex_rules):
-            raise CoverWithWrongSize(n, self.fixed_total)
         g = self.flex_gcd
-        if g != 0 and r % g != 0:
-            counts = [len(tile) for tile, count in self.flex_rules]
-            raise CoverWithWrongModulus(n, self.fixed_total, counts)
+        if r != 0 and r % g != 0:
+            raise CoverWithWrongModulus(n, self.fixed_total, g)
+
 
 def many(tile):
-    return Tileset([(tile, 0)])     
+    return Tileset([], [], [tile])     
+
+
+def exactly(tiles):
+    return Tileset(tiles, [], [])     

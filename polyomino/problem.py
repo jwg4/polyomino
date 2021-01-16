@@ -10,6 +10,7 @@ def selector_vector(n, i):
 
 
 def tiling_to_problem(tiles, shape):
+    raise NotImplementedError()
     n = len(tiles)
     key = []
     data = []
@@ -29,12 +30,12 @@ def tiling_to_array(tiles, shape):
 
 
 class TilingProblem(object):
-    def __init__(self, board, tiles):
+    def __init__(self, board, tileset):
         self.board = board
-        self.tiles = tiles
+        self.tileset = tileset
 
     def solve(self):
-        key, array = tiling_to_array(self.tiles, self.board)
+        key, array = tiling_to_array(self.tileset, self.board)
         solution = get_exact_cover(array)
         tiling = [key[s] for s in solution]
         if tiling:
