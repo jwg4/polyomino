@@ -1,7 +1,9 @@
 These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions' by Martin Gardner.
 
 >>> from polyomino.board import Chessboard, Rectangle
->>> from polyomino.constant import MONOMINO, DOMINO, STRAIGHT_TROMINO
+>>> from polyomino.constant import MONOMINO, DOMINO
+>>> from polyomino.constant import RIGHT_TROMINO, STRAIGHT_TROMINO
+>>> from polyomino.constant import ASYMMETRICAL_TETROMINOS
 >>> from polyomino.tileset import many
 
 
@@ -73,3 +75,27 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 +-+-+-+-+-+-+ + +
 |     |     | | |
 +-+-+-+-+-+-+-+-+
+
+>>> Chessboard().remove((2, 3)).tile_with_many(STRAIGHT_TROMINO).solve()
+
+>>> print(Chessboard().remove((4, 5)).tile_with_many(RIGHT_TROMINO).solve().display())
++-+-+-+-+-+-+-+-+
+| |   | |   |   |
++ +-+ + +-+ + +-+
+|   | |   | | | |
++-+-+-+-+-+-+-+ +
+| |   | |   |   |
++ +-+ + +-+ +-+-+
+|   | |   | |   |
++-+-+-+-+-+-+-+ +
+| |   |   |   | |
++ +-+ + +-+ +-+-+
+|   | | |X| |   |
++-+-+-+-+-+-+-+ +
+| |   | |   | | |
++ +-+ + +-+ + +-+
+|   | |   | |   |
++-+-+-+-+-+-+-+-+
+
+>>> [name for name in ASYMMETRICAL_TETROMINOS if Chessboard().tile_with_many(ASYMMETRICAL_TETROMINOS[name]).solve() is None]
+['S', 'Z']
