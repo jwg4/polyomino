@@ -10,5 +10,5 @@
 >>> Chessboard().tile_with_many(DOMINO)
 <polyomino.problem.TilingProblem object at ...>
 
->>> Chessboard().tile_with_set(many(DOMINO).and_exactly(2, MONOMINO))
+>>> Chessboard().tile_with_set(many(DOMINO).and_repeated_exactly(2, MONOMINO))
 <polyomino.problem.TilingProblem object at ...>

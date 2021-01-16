@@ -5,7 +5,7 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 >>> from polyomino.constant import RIGHT_TROMINO, STRAIGHT_TROMINO
 >>> from polyomino.constant import ONESIDED_TETROMINOS
 >>> from polyomino.constant import TETROMINOS, ALL_PENTOMINOS
->>> from polyomino.tileset import many
+>>> from polyomino.tileset import many, repeated_exactly, any_number_of
 
 
 > ...
@@ -58,7 +58,7 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 |     | | |     |
 +-+-+-+-+-+-+-+-+
 
->>> print(Chessboard().tile_with_set(many(STRAIGHT_TROMINO).and_exactly(1, MONOMINO)).solve().display())
+>>> print(Chessboard().tile_with_set(many(STRAIGHT_TROMINO).and_one(MONOMINO)).solve().display())
 +-+-+-+-+-+-+-+-+
 | | | | | | | | |
 + + + + + + + + +
@@ -100,6 +100,10 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 
 >>> [name for name in ONESIDED_TETROMINOS if Chessboard().tile_with_many(ONESIDED_TETROMINOS[name]).solve() is None]
 ['S', 'Z']
+
+As mentioned on p118, there is an easy argument to show that this is impossible - naive search is computationally intractable.
+>>> Chessboard().tile_with_set(any_number_of([ONESIDED_TETROMINOS['L'], ONESIDED_TETROMINOS['J']]).and_one(TETROMINOS['Square']))
+<polyomino.problem.TilingProblem object at ...>
 
 >>> print(Chessboard().tile_with(ALL_PENTOMINOS + [TETROMINOS['Square']]).solve().display())
 +-+-+-+-+-+-+-+-+

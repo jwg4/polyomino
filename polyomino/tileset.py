@@ -64,9 +64,12 @@ class Tileset(object):
             selector = self.empty_vector()
             yield tile, selector, False
 
-    def and_exactly(self, count, tile):
+    def and_repeated_exactly(self, count, tile):
         mandatory = self.mandatory + [tile] * count
         return Tileset(mandatory, self.optional, self.filler)
+
+    def and_one(self, tile):
+        return self.and_repeated_exactly(1, tile)
 
 
 def many(tile):
@@ -75,3 +78,11 @@ def many(tile):
 
 def exactly(tiles):
     return Tileset(tiles, [], [])     
+
+
+def repeated_exactly(count, tile):
+    return Tileset([tile] * count, [], [])
+
+
+def any_number_of(tiles):
+    return Tileset([], [], tiles)
