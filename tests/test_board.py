@@ -25,10 +25,22 @@ def test_remove_from_irregular():
     assert set(trimmed.squares) == set([(0, 0), (0, 1), (1, 1), (1, 2)])
 
 
+def test_remove_from_irregular_gen():
+    squares = [(0, 0), (0, 1), (1, 1), (1, 2), (1, 3)]
+    def gen_sq():
+        for sq in squares:
+            yield sq
+    board = Irregular(gen_sq())
+    assert set(board.squares) == set(squares)
+    trimmed = board.remove((1, 3))
+    assert set(trimmed.squares) == set([(0, 0), (0, 1), (1, 1), (1, 2)])
+
+
 def test_tile_with_many_size_check():
     board = Rectangle(8, 8).remove((0, 0))
     with pytest.raises(Exception):
         board.tile_with_many([(0, 0), (1, 0)])
+
 
 def test_adjusted_square_irregular():
     squares = [(3, -2), (3, -1), (4, -1), (4, 0), (4, 1)]
