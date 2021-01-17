@@ -37,7 +37,6 @@ class Shape(object):
             if square not in self.squares:
                 raise Exception("Tried to remove a square %s which was not present in the board" % (square, ))
         return Irregular([sq for sq in self.squares if sq not in squares])
-        
 
     def tile_with(self, tiles):
         return self.tile_with_set(exactly(tiles))

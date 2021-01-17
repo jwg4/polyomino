@@ -1,4 +1,5 @@
 import doctest
+import os
 
 import pytest
 
@@ -8,5 +9,8 @@ def run_tests():
 
 
 def run_doctests():
-    doctest.testfile("examples/gardner.md", optionflags=doctest.ELLIPSIS)
-    doctest.testfile("examples/fluid.md", optionflags=doctest.ELLIPSIS)
+    for file in os.listdir("examples/"):
+        if not file.endswith(".md"):
+            continue
+        filepath = os.path.join("examples/", file) 
+        doctest.testfile(filepath, optionflags=doctest.ELLIPSIS)
