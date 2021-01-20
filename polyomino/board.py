@@ -121,6 +121,9 @@ class Irregular(Shape):
         h, v = self.calculate_tiling(tiling)
         return "\n".join(self.format_tiling_lines(h, v))
 
+    def display(self):
+        return self.format_tiling([self.squares])
+
 
 class DeletedRectangle(Irregular):
     def __init__(self, whole, deleted):
