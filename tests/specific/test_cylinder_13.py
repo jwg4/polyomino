@@ -1,3 +1,5 @@
+import numpy as np
+
 from polyomino.board import Irregular, Rectangle
 from polyomino.constant import TETROMINOS
 
@@ -23,6 +25,23 @@ def test_13_cylinder():
     problem = board.tile_with_many(TETROMINOS['T'])
     solution = problem.solve()
     assert solution is not None
+
+
+def test_13_cylinder_problem():
+    board = Irregular(make_13_cylinder())    
+    problem = board.tile_with_many(TETROMINOS['T'])
+    problem.make_problem()
+    a = problem.array
+    assert a.shape[1] == 16 * 13
+    assert 16 * 13 < a.shape[0] < 8 * 16 * 13
+
+    col_sums = np.sum(a, 0)
+    assert min(col_sums) == 1
+    assert max(col_sums) == 16
+
+    row_sums = np.sum(a, 1)  
+    assert min(row_sums) == 4
+    assert max(row_sums) == 4
 
 
 def test_4_square():
