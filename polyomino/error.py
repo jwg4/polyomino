@@ -13,3 +13,9 @@ class CoverWithWrongModulus(PolyominoError):
         self.board_size = board_size
         self.fixed_size = fixed_size
         self.gcd = gcd
+
+
+class CantPlaceSinglePiece(PolyominoError):
+    def __init__(self, board, tileset):
+        self.board = board
+        self.tileset = tileset
