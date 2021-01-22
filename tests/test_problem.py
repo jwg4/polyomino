@@ -2,6 +2,9 @@ import pytest
 
 import numpy as np
 
+from hypothesis import given, assume
+from hypothesis.strategies import integers
+
 from polyomino.board import Irregular, Rectangle, Chessboard
 from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
 from polyomino.constant import ALL_PENTOMINOS
@@ -159,3 +162,18 @@ def test_output_problem_array_round_trip():
 
     result = np.genfromtxt(result_filename)
     np.testing.assert_array_equal(result, problem.array)
+
+
+@given(integers(2, 10), integers(2, 50), integers(2, 50))
+def test_right_number_of_tile_positions(l, x, y):
+    assume(l < x and l < y)
+    assume(x * y % l == 0)
+    tile = [(0, i) for i in range(0, l)]
+    tileset = many(tile)
+    board = Rectangle(x, y)
+    size = x * y
+    n_positions = (x - l + 1) * y + x * (y - l + 1)
+    problem = board.tile_with_set(tileset)
+    problem.make_problem()
+    a = problem.array
+    assert a.shape == (n_positions, size)
