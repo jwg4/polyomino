@@ -49,3 +49,41 @@ def test_solve_simple_tileset_with_0():
     solution = problem.solve()
     expected = [[(0, 0), (0, 1)], [(1, 1), (1, 2)]]
     assert solution.tiling == expected
+
+
+def test_solve_one_tile_problem():
+    tile = TETROMINOS['T']
+    tileset = many(tile)
+    board = Irregular(tile)
+    problem = board.tile_with_set(tileset)
+    solution = problem.solve()
+    assert solution is not None
+
+
+def test_one_tile_problem_is_correct():
+    tile = TETROMINOS['T']
+    tileset = many(tile)
+    board = Irregular(tile)
+    problem = board.tile_with_set(tileset)
+    problem.make_problem()
+    a = problem.array
+    assert a.shape == (1, 4)
+
+
+def test_solve_rotated_one_tile_problem():
+    tile = TETROMINOS['T']
+    tileset = many(tile)
+    board = Irregular([(1, 0), (0, 1), (1, 1), (1, 2)])
+    problem = board.tile_with_set(tileset)
+    solution = problem.solve()
+    assert solution is not None
+
+
+def test_rotated_one_tile_problem_is_correct():
+    tile = TETROMINOS['T']
+    tileset = many(tile)
+    board = Irregular([(1, 0), (0, 1), (1, 1), (1, 2)])
+    problem = board.tile_with_set(tileset)
+    problem.make_problem()
+    a = problem.array
+    assert a.shape == (1, 4)

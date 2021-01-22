@@ -14,9 +14,9 @@ class Shape(object):
         return len(self.squares)
 
     def positions(self, tile, with_reflections=False):
-        reference = tile[0]
         for sq in self.squares:
             for rotated in rotations(tile, with_reflections):
+                reference = rotated[0]
                 translated = [
                     (x - reference[0] + sq[0], y - reference[1] + sq[1])
                     for x, y in rotated
