@@ -14,9 +14,9 @@ class Shape(object):
         return len(self.squares)
 
     def positions(self, tile, with_reflections=False):
-        reference = tile[0]
         for sq in self.squares:
             for rotated in rotations(tile, with_reflections):
+                reference = rotated[0]
                 translated = [
                     (x - reference[0] + sq[0], y - reference[1] + sq[1])
                     for x, y in rotated
@@ -120,6 +120,9 @@ class Irregular(Shape):
     def format_tiling(self, tiling):
         h, v = self.calculate_tiling(tiling)
         return "\n".join(self.format_tiling_lines(h, v))
+
+    def display(self):
+        return self.format_tiling([self.squares])
 
 
 class DeletedRectangle(Irregular):

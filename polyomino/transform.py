@@ -43,7 +43,7 @@ def unique_after_transform(tile, transforms):
         mx = min(s[0] for s in rotated)
         my = min(s[1] for s in rotated)
         shifted = [(t[0] - mx, t[1] - my) for t in rotated]
-        shifted.sort()
-        if tuple(shifted) not in s:
+        key = tuple(sorted(shifted))
+        if key not in s:
             yield shifted
-            s.add(tuple(shifted))
+            s.add(key)

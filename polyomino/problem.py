@@ -2,6 +2,7 @@ import numpy as np
 
 from exact_cover import get_exact_cover
 
+from .error import CantPlaceSinglePiece
 from .solution import Solution
 
 
@@ -36,6 +37,8 @@ class TilingProblem(object):
 
     def solve(self):
         self.make_problem() 
+        if self.array.ndim < 2:
+            raise CantPlaceSinglePiece(self.board, self.tileset)
         solution = get_exact_cover(self.array)
         tiling = [self.key[s] for s in solution]
         if tiling:
