@@ -1,6 +1,6 @@
 import pytest
 
-from polyomino.board import Irregular
+from polyomino.board import Irregular, Rectangle
 from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
 from polyomino.error import PolyominoError
 from polyomino.tileset import many
