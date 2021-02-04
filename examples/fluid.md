@@ -25,3 +25,8 @@
 
 ```
 
+```
+>>> Chessboard().tile_with_set(many(DOMINO).and_repeated_exactly(2, MONOMINO)).with_heuristics()
+<polyomino.problem.TilingProblem object at ...>
+
+```
