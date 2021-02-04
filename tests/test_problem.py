@@ -105,7 +105,7 @@ def test_simple_problem_check_array():
     board = Rectangle(3, 5)
     problem = board.tile_with_set(tileset)
     problem.make_problem()
-    a = problem.array()
+    a = problem.array
     assert a.shape(35, 18)
 
 
@@ -116,5 +116,5 @@ def test_simple_problem_biggest_first_check_array():
     problem = board.tile_with_set(tileset)
     problem.biggest_pieces_first = True
     problem.make_problem()
-    a = problem.array()
+    a = problem.array
     assert a.shape(35, 18)
