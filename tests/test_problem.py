@@ -90,6 +90,7 @@ def test_solve_rotated_one_tile_problem():
 
 
 def test_rotated_one_tile_problem_is_correct():
+    tile = TETROMINOS['T']
     tileset = many(tile)
     board = Irregular([(1, 0), (0, 1), (1, 1), (1, 2)])
     problem = board.tile_with_set(tileset)
@@ -100,7 +101,7 @@ def test_rotated_one_tile_problem_is_correct():
 
 def test_simple_problem_check_array():
     tile = TETROMINOS['T']
-    tileset = many(tile).and_exactly(3, MONOMINO)
+    tileset = many(tile).and_repeated_exactly(3, MONOMINO)
     board = Rectangle(3, 5)
     problem = board.tile_with_set(tileset)
     problem.make_problem()
@@ -110,7 +111,7 @@ def test_simple_problem_check_array():
 
 def test_simple_problem_biggest_first_check_array():
     tile = TETROMINOS['T']
-    tileset = many(tile).and_exactly(3, MONOMINO)
+    tileset = many(tile).and_repeated_exactly(3, MONOMINO)
     board = Rectangle(3, 5)
     problem = board.tile_with_set(tileset)
     problem.biggest_pieces_first = True
