@@ -1,5 +1,7 @@
 import pytest
 
+import numpy as np
+
 from polyomino.board import Irregular, Rectangle
 from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
 from polyomino.error import PolyominoError
@@ -107,6 +109,11 @@ def test_simple_problem_check_array():
     problem.make_problem()
     a = problem.array
     assert a.shape == (65, 18)
+    expected_sums = np.array(
+        [2] * 45
+        + [4] * 20
+    )
+    np.testing.assert_array_equal(a.sum(axis=1), expected_sums)
 
 
 def test_simple_problem_biggest_first_check_array():
@@ -118,3 +125,8 @@ def test_simple_problem_biggest_first_check_array():
     problem.make_problem()
     a = problem.array
     assert a.shape == (65, 18)
+    expected_sums = np.array(
+        [4] * 20
+        + [2] * 45
+    )
+    np.testing.assert_array_equal(a.sum(axis=1), expected_sums)
