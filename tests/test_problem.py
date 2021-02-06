@@ -1,6 +1,8 @@
 import pytest
 
-from polyomino.board import Irregular
+import numpy as np
+
+from polyomino.board import Irregular, Rectangle
 from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
 from polyomino.error import PolyominoError
 from polyomino.tileset import many
@@ -70,6 +72,16 @@ def test_one_tile_problem_is_correct():
     assert a.shape == (1, 4)
 
 
+def test_one_tile_problem_is_correct_with_heuristics():
+    tile = TETROMINOS['T']
+    tileset = many(tile)
+    board = Irregular(tile)
+    problem = board.tile_with_set(tileset).with_heuristics()
+    problem.make_problem()
+    a = problem.array
+    assert a.shape == (1, 4)
+
+
 def test_solve_rotated_one_tile_problem():
     tile = TETROMINOS['T']
     tileset = many(tile)
@@ -87,3 +99,34 @@ def test_rotated_one_tile_problem_is_correct():
     problem.make_problem()
     a = problem.array
     assert a.shape == (1, 4)
+
+
+def test_simple_problem_check_array():
+    tile = TETROMINOS['T']
+    tileset = many(tile).and_repeated_exactly(3, MONOMINO)
+    board = Rectangle(3, 5)
+    problem = board.tile_with_set(tileset)
+    problem.make_problem()
+    a = problem.array
+    assert a.shape == (65, 18)
+    expected_sums = np.array(
+        [2] * 45
+        + [4] * 20
+    )
+    np.testing.assert_array_equal(a.sum(axis=1), expected_sums)
+
+
+def test_simple_problem_biggest_first_check_array():
+    tile = TETROMINOS['T']
+    tileset = many(tile).and_repeated_exactly(3, MONOMINO)
+    board = Rectangle(3, 5)
+    problem = board.tile_with_set(tileset)
+    problem.biggest_pieces_first = True
+    problem.make_problem()
+    a = problem.array
+    assert a.shape == (65, 18)
+    expected_sums = np.array(
+        [4] * 20
+        + [2] * 45
+    )
+    np.testing.assert_array_equal(a.sum(axis=1), expected_sums)

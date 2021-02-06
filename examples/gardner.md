@@ -21,6 +21,7 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 
 ```
 
+[An impossible tiling will give the solution None.]
 ```
 >>> Rectangle(4, 4).remove((0, 0)).remove((3, 3)).tile_with_many(DOMINO).solve()
 
