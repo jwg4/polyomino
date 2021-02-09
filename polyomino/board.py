@@ -53,7 +53,7 @@ class Irregular(Shape):
     _adjusted = None
 
     def __init__(self, squares):
-        self._squares = squares
+        self._squares = list(squares)
         self.min_x = min(x for x, y in self.squares)
         self.min_y = min(y for x, y in self.squares)
         self.max_x = max(x for x, y in self.squares)
