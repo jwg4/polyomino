@@ -1,4 +1,8 @@
 # POLYOMINO - a Python package for polyomino tiling problems
+[![PyPI version](https://badge.fury.io/py/polyomino.svg)](https://badge.fury.io/py/polyomino)
+![Deploy wheels to pypi](https://github.com/jwg4/polyomino/workflows/Deploy%20wheels%20to%20pypi/badge.svg)
+![Run Python tests](https://github.com/jwg4/polyomino/workflows/Run%20Python%20tests/badge.svg)
+
 
 This is a package for manipulating polyominos and in particular, solving tiling problems. It uses the 'exact-cover' python package as the main engine for solving cover problems.
 
