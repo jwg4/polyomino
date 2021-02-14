@@ -35,7 +35,7 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 
 ```
 >>> print(Chessboard().remove((0, 0)).remove((0, 7)).tile_with_many(DOMINO).solve().display())
-+ +-+-+-+-+-+-+-+
+  +-+-+-+-+-+-+-+
   | | | | | | | |
 +-+ + + + + + + +
 | | | | | | | | |
@@ -51,7 +51,7 @@ These examples are taken from chapter 13 of 'Mathematical Puzzles and Diversions
 | | | | | | | | |
 +-+ + + + + + + +
   | | | | | | | |
-+ +-+-+-+-+-+-+-+
+  +-+-+-+-+-+-+-+
 
 ```
 
@@ -143,7 +143,7 @@ As mentioned on p118, there is an easy argument to show that this is impossible 
 >>> print(Chessboard().tile_with(ALL_PENTOMINOS + [TETROMINOS['Square']]).solve().display())
 +-+-+-+-+-+-+-+-+
 | |         |   |
-+ +-+-+-+-+-+ + +
++ +-+-+-+-+-+   +
 |     |     |   |
 +-+ +-+ +-+-+-+-+
 | | |   | |     |
@@ -155,7 +155,7 @@ As mentioned on p118, there is an easy argument to show that this is impossible 
 | |   | | | |   |
 + +-+ + +-+ +-+ +
 |   | | |     | |
-+ + +-+ +-+ +-+ +
++   +-+ +-+ +-+ +
 |   |     | |   |
 +-+-+-+-+-+-+-+-+
 
