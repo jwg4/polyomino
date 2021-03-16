@@ -147,3 +147,14 @@ def test_output_problem_array():
         expected = f.read()
 
     assert result == expected
+
+
+def test_output_problem_array_round_trip():
+    result_filename = "tests/files/output/pentominos_chessboard.csv"
+
+    tiles = ALL_PENTOMINOS + [TETROMINOS['Square']]
+    problem = Chessboard().tile_with(tiles)
+    problem.output_array(result_filename)
+
+    result = np.genfromtxt(result_filename)
+    np.testing.assert_array_equal(result, problem.array)
