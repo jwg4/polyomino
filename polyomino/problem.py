@@ -45,12 +45,14 @@ class TilingProblem(object):
 
     def make_problem(self):
         if self.biggest_pieces_first:
-            self.key, self.array = tiling_to_array_order_biggest(self.tileset, self.board)
+            self.key, self.array = tiling_to_array_order_biggest(
+                self.tileset, self.board
+            )
         else:
             self.key, self.array = tiling_to_array(self.tileset, self.board)
 
     def solve(self):
-        self.make_problem() 
+        self.make_problem()
         if self.array.ndim < 2:
             raise CantPlaceSinglePiece(self.board, self.tileset)
         solution = get_exact_cover(self.array)
@@ -64,4 +66,4 @@ class TilingProblem(object):
 
     def output_array(self, filename):
         self.make_problem()
-        numpy.savetxt(filename, self.array) 
+        np.savetxt(filename, self.array, fmt="%d")
