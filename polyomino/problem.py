@@ -61,3 +61,7 @@ class TilingProblem(object):
     def with_heuristics(self):
         self.biggest_pieces_first = True
         return self
+
+    def output_array(self, filename):
+        self.make_problem()
+        numpy.savetxt(filename, self.array) 
