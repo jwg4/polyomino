@@ -38,19 +38,26 @@ def tiling_to_array_order_biggest(tileset, shape):
 
 class TilingProblem(object):
     biggest_pieces_first = False
+    _name = ""
+    array = None
+    key = None
 
     def __init__(self, board, tileset):
         self.board = board
         self.tileset = tileset
 
     def make_problem(self):
+        if self.array is not None and self.key is not None:
+            return
         if self.biggest_pieces_first:
-            self.key, self.array = tiling_to_array_order_biggest(self.tileset, self.board)
+            self.key, self.array = tiling_to_array_order_biggest(
+                self.tileset, self.board
+            )
         else:
             self.key, self.array = tiling_to_array(self.tileset, self.board)
 
     def solve(self):
-        self.make_problem() 
+        self.make_problem()
         if self.array.ndim < 2:
             raise CantPlaceSinglePiece(self.board, self.tileset)
         solution = get_exact_cover(self.array)
@@ -61,3 +68,28 @@ class TilingProblem(object):
     def with_heuristics(self):
         self.biggest_pieces_first = True
         return self
+
+    def output_array(self, filename):
+        self.make_problem()
+        np.savetxt(filename, self.array, fmt="%d", header=self.header)
+
+    def set_name(self, name):
+        self._name = name
+
+    @property
+    def size(self):
+        self.make_problem()
+        return self.array.shape
+        
+    @property
+    def name(self):
+        if self._name:
+            return self._name
+        else:
+            return "Tiling problem" 
+
+    @property
+    def header(self):
+        x, y = self.size
+        return "%s, %d x %d" % (self.name, x, y)
+
