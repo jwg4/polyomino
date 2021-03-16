@@ -139,6 +139,7 @@ def test_output_problem_array():
 
     tiles = ALL_PENTOMINOS + [TETROMINOS['Square']]
     problem = Chessboard().tile_with(tiles)
+    problem.set_name("Pentominos + square on chessboard")
     problem.output_array(result_filename)
 
     with open(result_filename) as f:
