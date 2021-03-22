@@ -2,7 +2,7 @@ import pytest
 
 import numpy as np
 
-from hypothesis import given, assume
+from hypothesis import given, assume, settings
 from hypothesis.strategies import integers
 
 from polyomino.board import Irregular, Rectangle, Chessboard
@@ -164,6 +164,7 @@ def test_output_problem_array_round_trip():
     np.testing.assert_array_equal(result, problem.array)
 
 
+@settings(deadline=2000)
 @given(integers(2, 10), integers(2, 50), integers(2, 50))
 def test_right_number_of_tile_positions(l, x, y):
     assume(l < x and l < y)
