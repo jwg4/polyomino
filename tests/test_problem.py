@@ -31,7 +31,7 @@ def test_solve_impossible_not_wrong_modulus():
 
 def test_solve_impossible_even_to_place_one_tile():
     squares = [(0, 0), (0, 1), (1, 0), (1, 1)]
-    problem = Irregular(squares).tile_with_many(TETROMINOS['T'])
+    problem = Irregular(squares).tile_with_many(TETROMINOS["T"])
     with pytest.raises(PolyominoError):
         solution = problem.solve()
 
@@ -62,7 +62,7 @@ def test_solve_simple_tileset_with_0():
 
 
 def test_solve_one_tile_problem():
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile)
     board = Irregular(tile)
     problem = board.tile_with_set(tileset)
@@ -71,7 +71,7 @@ def test_solve_one_tile_problem():
 
 
 def test_one_tile_problem_is_correct():
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile)
     board = Irregular(tile)
     problem = board.tile_with_set(tileset)
@@ -81,7 +81,7 @@ def test_one_tile_problem_is_correct():
 
 
 def test_one_tile_problem_is_correct_with_heuristics():
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile)
     board = Irregular(tile)
     problem = board.tile_with_set(tileset).with_heuristics()
@@ -91,7 +91,7 @@ def test_one_tile_problem_is_correct_with_heuristics():
 
 
 def test_solve_rotated_one_tile_problem():
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile)
     board = Irregular([(1, 0), (0, 1), (1, 1), (1, 2)])
     problem = board.tile_with_set(tileset)
@@ -100,7 +100,7 @@ def test_solve_rotated_one_tile_problem():
 
 
 def test_rotated_one_tile_problem_is_correct():
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile)
     board = Irregular([(1, 0), (0, 1), (1, 1), (1, 2)])
     problem = board.tile_with_set(tileset)
@@ -110,22 +110,19 @@ def test_rotated_one_tile_problem_is_correct():
 
 
 def test_simple_problem_check_array():
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile).and_repeated_exactly(3, MONOMINO)
     board = Rectangle(3, 5)
     problem = board.tile_with_set(tileset)
     problem.make_problem()
     a = problem.array
     assert a.shape == (65, 18)
-    expected_sums = np.array(
-        [2] * 45
-        + [4] * 20
-    )
+    expected_sums = np.array([2] * 45 + [4] * 20)
     np.testing.assert_array_equal(a.sum(axis=1), expected_sums)
 
 
 def test_simple_problem_biggest_first_check_array():
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile).and_repeated_exactly(3, MONOMINO)
     board = Rectangle(3, 5)
     problem = board.tile_with_set(tileset)
@@ -133,10 +130,7 @@ def test_simple_problem_biggest_first_check_array():
     problem.make_problem()
     a = problem.array
     assert a.shape == (65, 18)
-    expected_sums = np.array(
-        [4] * 20
-        + [2] * 45
-    )
+    expected_sums = np.array([4] * 20 + [2] * 45)
     np.testing.assert_array_equal(a.sum(axis=1), expected_sums)
 
 
@@ -144,7 +138,7 @@ def test_output_problem_array():
     result_filename = "tests/files/output/pentominos_chessboard.csv"
     expected_filename = "tests/files/expected/pentominos_chessboard.csv"
 
-    tiles = ALL_PENTOMINOS + [TETROMINOS['Square']]
+    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
     problem = Chessboard().tile_with(tiles)
     problem.set_name("Pentominos + square on chessboard")
     problem.output_array(result_filename)
@@ -160,7 +154,7 @@ def test_output_problem_array():
 def test_output_problem_array_round_trip():
     result_filename = "tests/files/output/pentominos_chessboard.csv"
 
-    tiles = ALL_PENTOMINOS + [TETROMINOS['Square']]
+    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
     problem = Chessboard().tile_with(tiles)
     problem.output_array(result_filename)
 
@@ -186,7 +180,7 @@ def test_right_number_of_tile_positions(l, x, y):
 
 @given(simple_polyominoes)
 def test_solve_arbitrary_one_tile_problem(tile):
-    tile = TETROMINOS['T']
+    tile = TETROMINOS["T"]
     tileset = many(tile)
     board = Irregular(tile)
     problem = board.tile_with_set(tileset)
