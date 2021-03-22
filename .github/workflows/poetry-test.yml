@@ -21,6 +21,6 @@ jobs:
       - name: Install requirements
         run: poetry install
       - name: Test package
-        run: poetry run pytest
+        run: poetry run test
       - name: Test package
         run: poetry run doctest
