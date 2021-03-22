@@ -15,6 +15,7 @@ pretty-poly = "0.2.0"
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.1"
 hypothesis = "^6.0.2"
+pytest-profiling = "^1.7.0"
 
 [tool.poetry.scripts]
 test = 'run_tests:run_tests'

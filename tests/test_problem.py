@@ -13,6 +13,8 @@ from polyomino.tileset import many
 
 from .strategies import simple_polyominoes
 
+pytest_plugins = ["pytest_profiling"]
+
 
 def test_solve_impossible():
     squares = [(0, 0), (0, 1), (1, 1)]
