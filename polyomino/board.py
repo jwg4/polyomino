@@ -115,13 +115,17 @@ class DeletedRectangle(Irregular):
 
 
 class Rectangle(Shape):
+    _squares_cache = None
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
     @property
     def squares(self):
-        return list(self.gen_squares())
+        if self._squares_cache is None:
+            self._squares_cache = list(self.gen_squares())
+        return self._squares_cache
 
     def gen_squares(self):
         for i in range(0, self.x):
