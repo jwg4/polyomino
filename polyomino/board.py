@@ -17,10 +17,10 @@ class Shape(object):
         for sq in self.squares:
             for rotated in rotations(tile, with_reflections):
                 reference = rotated[0]
-                translated = [
+                translated = {
                     (x - reference[0] + sq[0], y - reference[1] + sq[1])
                     for x, y in rotated
-                ]
+                }
                 if self.is_contained(translated):
                     yield translated
 
