@@ -12,11 +12,11 @@ def tiling_to_problem(tileset, shape):
     for tile, selector, optional in tileset.vectors():
         for translated in shape.positions(tile, tileset.reflections):
             key.append(translated)
-            vector = selector + shape.bit_vector(translated)
+            vector = np.concatenate([selector, shape.bit_vector(translated)])
             data.append(vector)
         if optional:
             key.append([])
-            vector = selector + shape.bit_vector([])
+            vector = np.concatenate([selector, shape.bit_vector([])])
             data.append(vector)
     return key, data
 

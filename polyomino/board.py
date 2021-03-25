@@ -6,6 +6,8 @@ from .transform import rotations
 
 
 class Shape(object):
+    bit_masks = None
+
     def is_contained(self, tile):
         return all(self.is_in(sq) for sq in tile)
 
@@ -17,15 +19,22 @@ class Shape(object):
         for sq in self.squares:
             for rotated in rotations(tile, with_reflections):
                 reference = rotated[0]
-                translated = {
+                translated = [
                     (x - reference[0] + sq[0], y - reference[1] + sq[1])
                     for x, y in rotated
-                }
+                ]
                 if self.is_contained(translated):
                     yield translated
 
     def bit_vector(self, tile):
-        return [sq in tile for sq in self.squares]
+        return np.sum([self.bit_mask(sq) for sq in tile], axis=0)
+
+    def bit_mask(self, sq):
+        if not self.bit_masks:
+            self.bit_masks = dict()
+        if sq not in self.bit_masks:
+            self.bit_masks[sq] = np.array([s == sq for s in self.squares], dtype=np.int32)
+        return self.bit_masks[sq]
 
     def remove(self, square):
         if square not in self.squares:

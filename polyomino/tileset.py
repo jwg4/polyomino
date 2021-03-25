@@ -1,3 +1,5 @@
+import numpy as np
+
 from .error import CoverWithWrongSize, CoverWithWrongModulus
 from .utils import gcd_list
 
@@ -46,10 +48,10 @@ class Tileset(object):
             raise CoverWithWrongModulus(n, self.fixed_total, g)
 
     def selector_vector(self, i):
-        return [i == j for j in range(0, self.selector_size)]
+        return np.array([i == j for j in range(0, self.selector_size)])
 
     def empty_vector(self):
-        return [False] * self.selector_size
+        return np.array([False] * self.selector_size)
  
     def vectors(self):
         i = 0
