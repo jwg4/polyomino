@@ -160,8 +160,8 @@ def test_output_problem_array_round_trip():
     np.testing.assert_array_equal(result, problem.array)
 
 
-@settings(deadline=4000)
-@given(integers(2, 10), integers(2, 50), integers(2, 50))
+@settings(deadline=None)
+@given(integers(2, 10), integers(2, 25), integers(2, 25))
 def test_right_number_of_tile_positions(l, x, y):
     assume(l < x and l < y)
     assume(x * y % l == 0)
