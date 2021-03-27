@@ -184,3 +184,13 @@ def test_solve_arbitrary_one_tile_problem(tile):
     problem = board.tile_with_set(tileset)
     solution = problem.solve()
     assert solution is not None
+
+
+@given(polyominos)
+def test_solve_arbitrary_two_tile_problem(tile):
+    tile = TETROMINOS["T"]
+    tileset = many(tile)
+    board = Irregular(tile + [(x, y + 100) for x, y in tile])
+    problem = board.tile_with_set(tileset)
+    solution = problem.solve()
+    assert solution is not None
