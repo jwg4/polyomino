@@ -11,7 +11,7 @@ from polyomino.constant import ALL_PENTOMINOS
 from polyomino.error import PolyominoError
 from polyomino.tileset import many
 
-from .strategies import simple_polyominoes
+from .strategies import polyominos
 
 
 def test_solve_impossible():
@@ -176,7 +176,7 @@ def test_right_number_of_tile_positions(l, x, y):
     assert a.shape == (n_positions, size)
 
 
-@given(simple_polyominoes)
+@given(polyominos)
 def test_solve_arbitrary_one_tile_problem(tile):
     tile = TETROMINOS["T"]
     tileset = many(tile)
