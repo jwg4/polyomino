@@ -13,4 +13,4 @@ class Solution(object):
         return "\n".join(self._gen_python())
 
     def _gen_python(self):
-        yield "TILING = %s" % (repr(self.tiling), )
+        yield "TILING = %s" % (repr(self.tiling),)

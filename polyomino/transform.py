@@ -5,12 +5,7 @@ def rotations(tile, and_reflections=True):
         return rotate(tile)
 
 
-ROTATIONS = [
-    [[1, 0], [0, 1]],
-    [[0, -1], [1, 0]],
-    [[-1, 0], [0, -1]],
-    [[0, 1], [-1, 0]]
-]
+ROTATIONS = [[[1, 0], [0, 1]], [[0, -1], [1, 0]], [[-1, 0], [0, -1]], [[0, 1], [-1, 0]]]
 
 
 ROTATIONS_AND_REFLECTIONS = [
@@ -21,7 +16,7 @@ ROTATIONS_AND_REFLECTIONS = [
     [[-1, 0], [0, 1]],
     [[0, -1], [-1, 0]],
     [[1, 0], [0, -1]],
-    [[0, 1], [1, 0]]
+    [[0, 1], [1, 0]],
 ]
 
 

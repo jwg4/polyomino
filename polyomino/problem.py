@@ -80,16 +80,15 @@ class TilingProblem(object):
     def size(self):
         self.make_problem()
         return self.array.shape
-        
+
     @property
     def name(self):
         if self._name:
             return self._name
         else:
-            return "Tiling problem" 
+            return "Tiling problem"
 
     @property
     def header(self):
         x, y = self.size
         return "%s, %d x %d" % (self.name, x, y)
-
