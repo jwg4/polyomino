@@ -1,4 +1,5 @@
-from hypothesis.strategies import builds, one_of, integers, sampled_from
+from hypothesis.strategies import builds, one_of, sampled_from
+from hypothesis.strategies import integers, lists, tuples
 
 from polyomino.constant import ALL_UP_TO_PENTOMINOS
 
@@ -35,6 +36,9 @@ j_shapes = builds(make_j_shape, integers(2, 5), integers(2, 5))
 
 simple_polyominos = one_of(h_lines, v_lines, boxes, v_shapes, j_shapes)
 
+
 small_polyominos = sampled_from(ALL_UP_TO_PENTOMINOS)
 
 polyominos = one_of(simple_polyominos, small_polyominos)
+
+disconnected = lists(tuples(integers(0, 6), (integers(0, 6)), 2, 7))
