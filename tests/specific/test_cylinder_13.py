@@ -31,7 +31,7 @@ def test_13_cylinder_tileset():
     assert tileset.mandatory == []
     assert tileset.optional == []
     assert len(tileset.filler) == 1
-    assert tileset.reflections == False
+    assert tileset.reflections is False
     assert tileset.selector_size == 0
 
 

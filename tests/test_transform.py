@@ -1,4 +1,4 @@
-from hypothesis import example, given
+from hypothesis import given
 from hypothesis.strategies import just
 
 from polyomino.transform import rotations
