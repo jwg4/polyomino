@@ -59,3 +59,34 @@ def test_output_problem_array_round_trip_explicit_numpy():
 
     result = np.genfromtxt(result_filename)
     np.testing.assert_array_equal(result, problem.array)
+
+
+def test_output_problem_array_not_numpy():
+    result_filename = "tests/files/output/pentominos_chessboard.csv"
+    expected_filename = "tests/files/expected/pentominos_chessboard_vanilla.csv"
+
+    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
+    problem = Chessboard().tile_with(tiles)
+    problem.set_name("Pentominos + square on chessboard")
+    problem.output_array(result_filename, numpy=False)
+
+    with open(result_filename) as f:
+        result = f.read()
+    with open(expected_filename) as f:
+        expected = f.read()
+
+    assert result == expected
+
+
+def test_output_problem_array_round_trip_not_numpy():
+    def read_csv(filename):
+        return []
+
+    result_filename = "tests/files/output/pentominos_chessboard.csv"
+
+    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
+    problem = Chessboard().tile_with(tiles)
+    problem.output_array(result_filename, numpy=False)
+
+    result = read_csv(result_filename)
+    np.testing.assert_array_equal(result, problem.array)
