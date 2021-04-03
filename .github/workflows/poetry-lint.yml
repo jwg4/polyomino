@@ -20,4 +20,4 @@ jobs:
       - name: Check black formatting
         run: poetry run black --check polyomino/ tests/
       - name: Check flake8 linting
-        run: poetry run python -m flake8 polyomino/ tests/
+        run: poetry run python -m flake8 --max-line-length 88 polyomino/ tests/
