@@ -183,7 +183,7 @@ def test_not_too_many_tile_positions(tile, x, y):
     a = problem.array
     n_positions, size = a.shape
     assert size == expected_size
-    assert n_positions <= max_positions 
+    assert n_positions <= max_positions
 
 
 @given(polyominos)
