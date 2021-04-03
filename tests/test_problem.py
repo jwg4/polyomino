@@ -187,13 +187,15 @@ def test_not_a_single_tile_fits():
     np.testing.assert_array_equal(a, np.array([[]]))
 
 
-@settings(deadline=None)
+@settings(deadline=None, suppress_health_check=[HealthCheck.filter_too_much])
 @example([(0, 0), (1, 0), (2, 0), (3, 0)], 2, 2)
 @given(polyominos, integers(2, 15), integers(2, 15))
 def test_not_too_many_tile_positions(tile, x, y):
     assume(x * y % len(tile) == 0)
     tileset = many(tile)
-    board = Rectangle(x, y)
+    rectangle = Rectangle(x, y)
+    board = Irregular(set(rectangle.squares + tile))
+    assume(len(board.squares) % len(tile) == 0)
     expected_size = x * y
     max_positions = 4 * expected_size
     problem = board.tile_with_set(tileset)
