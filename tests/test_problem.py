@@ -176,6 +176,21 @@ def test_right_number_of_tile_positions(l, x, y):
     assert a.shape == (n_positions, size)
 
 
+@settings(deadline=None)
+@given(polyominos, integers(2, 15), integers(2, 15))
+def test_not_too_many_tile_positions(tile, x, y):
+    tileset = many(tile)
+    board = Rectangle(x, y)
+    expected_size = x * y
+    max_positions = 4 * expected_size
+    problem = board.tile_with_set(tileset)
+    problem.make_problem()
+    a = problem.array
+    n_positions, size = a.shape
+    assert size == expected_size
+    assert n_positions <= max_positions 
+
+
 @given(polyominos)
 def test_solve_arbitrary_one_tile_problem(tile):
     tile = TETROMINOS["T"]
