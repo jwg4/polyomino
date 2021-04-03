@@ -1,12 +1,8 @@
-import pytest
-
 import numpy as np
 
-from polyomino.board import Irregular, Rectangle, Chessboard
-from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
+from polyomino.board import Chessboard
+from polyomino.constant import TETROMINOS
 from polyomino.constant import ALL_PENTOMINOS
-from polyomino.error import PolyominoError
-from polyomino.tileset import many
 
 
 def test_output_problem_array():

@@ -17,6 +17,7 @@ pytest = "^6.2.1"
 hypothesis = "^6.0.2"
 pytest-profiling = "^1.7.0"
 black = "^21.6b0"
+flake8 = "^3.9.0"
 
 [tool.poetry.scripts]
 test = 'run_tests:run_tests'
