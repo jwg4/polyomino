@@ -2,7 +2,7 @@ import pytest
 
 import numpy as np
 
-from hypothesis import given, assume, settings
+from hypothesis import example, given, assume, settings
 from hypothesis.strategies import integers
 
 from polyomino.board import Irregular, Rectangle, Chessboard
@@ -176,7 +176,18 @@ def test_right_number_of_tile_positions(l, x, y):
     assert a.shape == (n_positions, size)
 
 
+def test_not_a_single_tile_fits():
+    tile = [(0, 0), (1, 0), (2, 0), (3, 0)]
+    tileset = many(tile)
+    board = Rectangle(2, 2)
+    problem = board.tile_with_set(tileset)
+    problem.make_problem()
+    a = problem.array
+    np.testing.assert_array_equal(a, np.array([[]]))
+
+
 @settings(deadline=None)
+@example([(0, 0), (1, 0), (2, 0), (3, 0)], 2, 2)
 @given(polyominos, integers(2, 15), integers(2, 15))
 def test_not_too_many_tile_positions(tile, x, y):
     assume(x * y % len(tile) == 0)
