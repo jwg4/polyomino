@@ -12,11 +12,11 @@ def tiling_to_problem(tileset, shape):
     for tile, selector, optional in tileset.vectors():
         for translated in shape.positions(tile, tileset.reflections):
             key.append(translated)
-            vector = selector + shape.bit_vector(translated)
+            vector = np.concatenate([selector, shape.bit_vector(translated)])
             data.append(vector)
         if optional:
             key.append([])
-            vector = selector + shape.bit_vector([])
+            vector = np.concatenate([selector, shape.bit_vector([])])
             data.append(vector)
     return key, data
 
@@ -55,11 +55,11 @@ class TilingProblem(object):
             )
         else:
             self.key, self.array = tiling_to_array(self.tileset, self.board)
+        if self.array.ndim < 2:
+            raise CantPlaceSinglePiece(self.board, self.tileset)
 
     def solve(self):
         self.make_problem()
-        if self.array.ndim < 2:
-            raise CantPlaceSinglePiece(self.board, self.tileset)
         solution = get_exact_cover(self.array)
         tiling = [self.key[s] for s in solution]
         if tiling:
@@ -80,16 +80,15 @@ class TilingProblem(object):
     def size(self):
         self.make_problem()
         return self.array.shape
-        
+
     @property
     def name(self):
         if self._name:
             return self._name
         else:
-            return "Tiling problem" 
+            return "Tiling problem"
 
     @property
     def header(self):
         x, y = self.size
         return "%s, %d x %d" % (self.name, x, y)
-

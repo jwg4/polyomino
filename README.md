@@ -21,3 +21,6 @@ There can be additional columns which correspond to the use of a piece, if that 
 In the case where all tiles must be used exactly once, we have as many columns as the number of squares to be covered plus the number of tiles to be used. As Knuth points out, when the algorithm looks for a column which can be covered in one way, this means it is finding either a square which needs a particular piece to cover it, or for a piece which can only be fitted on the board in one way. Both deductive strategies should be used to narrow down efficiently.
 
 A heuristic for searches involving a limited number of monominos (single squares) can be configured. In the future we hope to implement further search heuristic options, as well as alternative algorithms for special cases like domino tiling.
+
+## Style note
+We (try to) spell 'polyominos' without an 'e' everywhere, by analogy with 'dominos'.
