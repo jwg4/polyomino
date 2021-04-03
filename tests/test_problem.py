@@ -142,34 +142,6 @@ def test_problem_with_no_mandatory_tiles():
     assert a is not None
 
 
-def test_output_problem_array():
-    result_filename = "tests/files/output/pentominos_chessboard.csv"
-    expected_filename = "tests/files/expected/pentominos_chessboard.csv"
-
-    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
-    problem = Chessboard().tile_with(tiles)
-    problem.set_name("Pentominos + square on chessboard")
-    problem.output_array(result_filename)
-
-    with open(result_filename) as f:
-        result = f.read()
-    with open(expected_filename) as f:
-        expected = f.read()
-
-    assert result == expected
-
-
-def test_output_problem_array_round_trip():
-    result_filename = "tests/files/output/pentominos_chessboard.csv"
-
-    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
-    problem = Chessboard().tile_with(tiles)
-    problem.output_array(result_filename)
-
-    result = np.genfromtxt(result_filename)
-    np.testing.assert_array_equal(result, problem.array)
-
-
 @settings(deadline=None, suppress_health_check=[HealthCheck.filter_too_much])
 @given(integers(2, 10), integers(2, 25), integers(2, 25))
 def test_right_number_of_tile_positions(l, x, y):
