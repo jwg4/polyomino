@@ -69,10 +69,19 @@ class TilingProblem(object):
         self.biggest_pieces_first = True
         return self
 
-    def output_array(self, filename):
+    def output_array(self, filename, numpy=True):
         self.make_problem()
+        if numpy:
+            self._save_numpy_csv(filename)
+        else:
+            self._save_vanilla_csv(filename)
+
+    def _save_numpy_csv(self, filename):
         np.savetxt(filename, self.array, fmt="%d", header=self.header)
 
+    def _save_vanilla_csv(self, filename):
+        pass
+ 
     def set_name(self, name):
         self._name = name
 
