@@ -181,10 +181,9 @@ def test_not_a_single_tile_fits():
     tile = [(0, 0), (1, 0), (2, 0), (3, 0)]
     tileset = many(tile)
     board = Rectangle(2, 2)
-    problem = board.tile_with_set(tileset)
-    problem.make_problem()
-    a = problem.array
-    np.testing.assert_array_equal(a, np.array([[]]))
+    with pytest.raises(PolyominoError):
+        problem = board.tile_with_set(tileset)
+        problem.make_problem()
 
 
 @settings(deadline=None, suppress_health_check=[HealthCheck.filter_too_much])
