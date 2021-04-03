@@ -55,11 +55,11 @@ class TilingProblem(object):
             )
         else:
             self.key, self.array = tiling_to_array(self.tileset, self.board)
+        if self.array.ndim < 2:
+            raise CantPlaceSinglePiece(self.board, self.tileset)
 
     def solve(self):
         self.make_problem()
-        if self.array.ndim < 2:
-            raise CantPlaceSinglePiece(self.board, self.tileset)
         solution = get_exact_cover(self.array)
         tiling = [self.key[s] for s in solution]
         if tiling:
