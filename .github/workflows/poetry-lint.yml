@@ -1,0 +1,23 @@
+name: Run Python tests
+on:
+   - pull_request
+   - push
+
+jobs:
+  testing:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: $3.7
+      - name: Install poetry
+        run: pip install poetry
+      - name: Install requirements
+        run: poetry install
+      - name: Check black formatting
+        run: poetry run black --check polyomino/ tests/
+      - name: Check flake8 linting
+        run: poetry run python -m flake8 polyomino/ tests/
