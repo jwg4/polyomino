@@ -179,6 +179,7 @@ def test_right_number_of_tile_positions(l, x, y):
 @settings(deadline=None)
 @given(polyominos, integers(2, 15), integers(2, 15))
 def test_not_too_many_tile_positions(tile, x, y):
+    assume(x * y % len(tile) == 0)
     tileset = many(tile)
     board = Rectangle(x, y)
     expected_size = x * y
