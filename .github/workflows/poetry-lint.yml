@@ -1,4 +1,4 @@
-name: Run Python tests
+name: Check whitespace and coding style
 on:
    - pull_request
    - push
