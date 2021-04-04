@@ -27,9 +27,11 @@ def test_remove_from_irregular():
 
 def test_remove_from_irregular_gen():
     squares = [(0, 0), (0, 1), (1, 1), (1, 2), (1, 3)]
+
     def gen_sq():
         for sq in squares:
             yield sq
+
     board = Irregular(gen_sq())
     assert set(board.squares) == set(squares)
     trimmed = board.remove((1, 3))
