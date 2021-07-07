@@ -13,4 +13,4 @@ def run_doctests():
         if not file.endswith(".md"):
             continue
         filepath = os.path.join("examples/", file) 
-        doctest.testfile(filepath, optionflags=doctest.ELLIPSIS)
+        doctest.testfile(filepath, optionflags=doctest.ELLIPSIS, raise_on_error=True)
