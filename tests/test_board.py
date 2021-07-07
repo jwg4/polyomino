@@ -8,6 +8,7 @@ def test_remove_from_rectangle():
     assert set(board.squares) == set([(0, 0), (1, 0), (0, 1), (1, 1), (0, 2), (1, 2)])
     trimmed = board.remove((1, 1))
     assert set(trimmed.squares) == set([(0, 0), (1, 0), (0, 1), (0, 2), (1, 2)])
+    assert True == False
 
 
 def test_error_if_removing_not_present():
