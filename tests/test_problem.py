@@ -10,7 +10,7 @@ from polyomino.board import Irregular, Rectangle, Chessboard
 from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
 from polyomino.constant import ALL_PENTOMINOS
 from polyomino.error import PolyominoError
-from polyomino.tileset import many
+from polyomino.tileset import many, Tileset
 
 from .strategies import polyominos
 
@@ -131,6 +131,15 @@ def test_simple_problem_biggest_first_check_array():
     assert a.shape == (65, 18)
     expected_sums = np.array([4] * 20 + [2] * 45)
     np.testing.assert_array_equal(a.sum(axis=1), expected_sums)
+
+
+def test_problem_with_no_mandatory_tiles():
+    tileset = Tileset([], ALL_PENTOMINOS, [DOMINO])
+    board = Rectangle(20, 20)
+    problem = board.tile_with_set(tileset)
+    problem.make_problem()
+    a = problem.array
+    assert a is not None
 
 
 def test_output_problem_array():

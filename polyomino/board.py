@@ -27,6 +27,8 @@ class Shape(object):
                     yield translated
 
     def bit_vector(self, tile):
+        if not tile:
+            return self.bit_mask(None)
         return np.sum([self.bit_mask(sq) for sq in tile], axis=0)
 
     def bit_mask(self, sq):
