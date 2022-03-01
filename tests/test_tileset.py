@@ -1,7 +1,8 @@
 import pytest
 
 from polyomino.board import Rectangle
-from polyomino.constant import TETROMINOS
+from polyomino.constant import DOMINO, TETROMINOS
+from polyomino.constant import ALL_PENTOMINOS
 from polyomino.error import CoverWithWrongModulus, CoverWithWrongSize
 from polyomino.tileset import Tileset
 
@@ -28,3 +29,10 @@ def test_wrong_gcd():
     tileset = Tileset([], [], [tile])
     with pytest.raises(CoverWithWrongModulus):
         tileset.check(board)
+
+
+def test_optional_tiles():
+    tileset = Tileset([], ALL_PENTOMINOS, [DOMINO])
+    board = Rectangle(20, 20)
+    tileset.check(board)
+
