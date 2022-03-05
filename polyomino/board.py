@@ -1,5 +1,7 @@
 import numpy as np
 
+from pretty_poly import make_ascii
+
 from .problem import TilingProblem
 from .tileset import exactly, many
 from .transform import rotations
@@ -66,6 +68,9 @@ class Shape(object):
     def tile_with_set(self, tileset):
         tileset.check(self)
         return TilingProblem(self, tileset)
+
+    def display(self):
+        return make_ascii([self.squares])
 
 
 class Irregular(Shape):
