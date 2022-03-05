@@ -72,6 +72,10 @@ class Shape(object):
     def display(self):
         return make_ascii([self.squares])
 
+    def format_tiling(self, pieces):
+        remainder = set(self.squares) - set([sq for piece in pieces for sq in piece])
+        return make_ascii(pieces + [remainder])
+
 
 class Irregular(Shape):
     _adjusted = None
