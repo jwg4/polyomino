@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "polyomino"
-version = "0.6.3-alpha.1"
+version = "0.6.3"
 description = "Solve polyomino tiling problems."
 readme = "README.md"
 authors = ["Jack Grahl <jack.grahl@gmail.com>"]
