@@ -73,7 +73,8 @@ class Shape(object):
         return make_ascii([self.squares])
 
     def format_tiling(self, pieces):
-        remainder = set(self.squares) - set([sq for piece in pieces for sq in piece])
+        squares_in_pieces = (sq for piece in pieces for sq in piece)
+        remainder = set(self.squares) - set(squares_in_pieces)
         return make_ascii(pieces + [remainder])
 
 
