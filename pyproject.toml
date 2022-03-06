@@ -8,7 +8,7 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
-exact-cover = "0.4.3"
+exact-cover = "1.0"
 numpy = "^1.20"
 pretty-poly = "0.2.0"
 
