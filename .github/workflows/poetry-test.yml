@@ -20,7 +20,7 @@ jobs:
         run: pip install poetry
       - name: Install requirements
         run: poetry install
-      - name: Test package
+      - name: run unit tests
         run: poetry run test
-      - name: Test package
+      - name: run doctests
         run: poetry run doctest

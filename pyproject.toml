@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "polyomino"
-version = "0.6.2"
+version = "0.6.3"
 description = "Solve polyomino tiling problems."
 readme = "README.md"
 authors = ["Jack Grahl <jack.grahl@gmail.com>"]
@@ -16,6 +16,7 @@ pretty-poly = "0.2.0"
 pytest = "^6.2.1"
 hypothesis = "^6.0.2"
 pytest-profiling = "^1.7.0"
+black = "^21.6b0"
 
 [tool.poetry.scripts]
 test = 'run_tests:run_tests'
