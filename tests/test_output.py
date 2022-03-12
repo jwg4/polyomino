@@ -62,7 +62,7 @@ def test_output_problem_array_round_trip_explicit_numpy():
 
 
 def test_output_problem_array_not_numpy():
-    result_filename = "tests/files/output/pentominos_chessboard.csv"
+    result_filename = "tests/files/output/pentominos_chessboard_vanilla.csv"
     expected_filename = "tests/files/expected/pentominos_chessboard_vanilla.csv"
 
     tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]

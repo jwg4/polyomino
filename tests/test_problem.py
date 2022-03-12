@@ -8,6 +8,7 @@ from hypothesis.strategies import integers
 
 from polyomino.board import Irregular, Rectangle
 from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
+from polyomino.constant import ALL_PENTOMINOS
 from polyomino.error import PolyominoError
 from polyomino.tileset import many, Tileset
 
