@@ -35,4 +35,3 @@ def test_optional_tiles():
     tileset = Tileset([], ALL_PENTOMINOS, [DOMINO])
     board = Rectangle(20, 20)
     tileset.check(board)
-

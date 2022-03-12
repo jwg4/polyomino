@@ -82,11 +82,11 @@ class TilingProblem(object):
         np.savetxt(filename, self.array, fmt="%d", header=self.header)
 
     def _save_vanilla_csv(self, filename):
-        with open(filename, 'w') as csvfile:
+        with open(filename, "w") as csvfile:
             writer = csv.writer(csvfile)
             for row in self.array:
                 writer.writerow(row)
- 
+
     def set_name(self, name):
         self._name = name
 
