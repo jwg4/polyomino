@@ -84,7 +84,6 @@ class TilingProblem(object):
     def _save_vanilla_csv(self, filename):
         with open(filename, 'w') as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow(self.key)
             for row in self.array:
                 writer.writerow(row)
  

@@ -1,3 +1,5 @@
+import csv
+
 import numpy as np
 
 from polyomino.board import Chessboard
@@ -80,7 +82,9 @@ def test_output_problem_array_not_numpy():
 
 def test_output_problem_array_round_trip_not_numpy():
     def read_csv(filename):
-        return []
+        with open(filename, 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            return [[int(x) for x in row] for row in reader]
 
     result_filename = "tests/files/output/pentominos_chessboard.csv"
 
