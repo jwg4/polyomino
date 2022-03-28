@@ -106,7 +106,7 @@ class DeletedRectangle(Irregular):
     def __init__(self, whole, deleted):
         self.whole = whole
         self.deleted = deleted
-        super().__init__([sq for sq in self.whole.squares if not sq in self.deleted])
+        super().__init__([sq for sq in self.whole.squares if sq not in self.deleted])
 
     def remove(self, square):
         if square not in self.squares:

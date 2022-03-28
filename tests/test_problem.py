@@ -6,7 +6,7 @@ from hypothesis import example, given, assume, settings
 from hypothesis import HealthCheck
 from hypothesis.strategies import integers
 
-from polyomino.board import Irregular, Rectangle, Chessboard
+from polyomino.board import Irregular, Rectangle
 from polyomino.constant import DOMINO, MONOMINO, TETROMINOS
 from polyomino.constant import ALL_PENTOMINOS
 from polyomino.error import PolyominoError
@@ -18,21 +18,21 @@ from .strategies import polyominos
 def test_solve_impossible():
     squares = [(0, 0), (0, 1), (1, 1)]
     with pytest.raises(PolyominoError):
-        problem = Irregular(squares).tile_with_many(DOMINO)
+        _ = Irregular(squares).tile_with_many(DOMINO)
 
 
 def test_solve_impossible_not_wrong_modulus():
     squares = [(0, 0), (0, 1), (1, 1), (0, 2)]
     problem = Irregular(squares).tile_with_many(DOMINO)
     solution = problem.solve()
-    assert solution == None
+    assert solution is None
 
 
 def test_solve_impossible_even_to_place_one_tile():
     squares = [(0, 0), (0, 1), (1, 0), (1, 1)]
     problem = Irregular(squares).tile_with_many(TETROMINOS["T"])
     with pytest.raises(PolyominoError):
-        solution = problem.solve()
+        _ = problem.solve()
 
 
 def test_solve_simple():
@@ -142,44 +142,16 @@ def test_problem_with_no_mandatory_tiles():
     assert a is not None
 
 
-def test_output_problem_array():
-    result_filename = "tests/files/output/pentominos_chessboard.csv"
-    expected_filename = "tests/files/expected/pentominos_chessboard.csv"
-
-    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
-    problem = Chessboard().tile_with(tiles)
-    problem.set_name("Pentominos + square on chessboard")
-    problem.output_array(result_filename)
-
-    with open(result_filename) as f:
-        result = f.read()
-    with open(expected_filename) as f:
-        expected = f.read()
-
-    assert result == expected
-
-
-def test_output_problem_array_round_trip():
-    result_filename = "tests/files/output/pentominos_chessboard.csv"
-
-    tiles = ALL_PENTOMINOS + [TETROMINOS["Square"]]
-    problem = Chessboard().tile_with(tiles)
-    problem.output_array(result_filename)
-
-    result = np.genfromtxt(result_filename)
-    np.testing.assert_array_equal(result, problem.array)
-
-
 @settings(deadline=None, suppress_health_check=[HealthCheck.filter_too_much])
 @given(integers(2, 10), integers(2, 25), integers(2, 25))
-def test_right_number_of_tile_positions(l, x, y):
-    assume(l < x and l < y)
-    assume(x * y % l == 0)
-    tile = [(0, i) for i in range(0, l)]
+def test_right_number_of_tile_positions(length, x, y):
+    assume(length < x and length < y)
+    assume(x * y % length == 0)
+    tile = [(0, i) for i in range(0, length)]
     tileset = many(tile)
     board = Rectangle(x, y)
     size = x * y
-    n_positions = (x - l + 1) * y + x * (y - l + 1)
+    n_positions = (x - length + 1) * y + x * (y - length + 1)
     problem = board.tile_with_set(tileset)
     problem.make_problem()
     a = problem.array
@@ -211,7 +183,7 @@ def test_not_too_many_tile_positions(tile, x, y):
     a = problem.array
     n_positions, size = a.shape
     assert size == expected_size
-    assert n_positions <= max_positions 
+    assert n_positions <= max_positions
 
 
 @given(polyominos)

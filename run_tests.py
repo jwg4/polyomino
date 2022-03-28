@@ -10,7 +10,7 @@ def run_tests():
 
 def run_doctests():
     for file in os.listdir("examples/"):
-        if not file.endswith(".md"):
+        if not (file.endswith(".md") or file.endswith(".txt")):
             continue
         filepath = os.path.join("examples/", file)
         doctest.testfile(filepath, optionflags=doctest.ELLIPSIS, raise_on_error=True)

@@ -14,4 +14,5 @@ def test_export_to_python():
     with open("tests/temp.py", "w") as out:
         out.write(solution.python())
     from tests.temp import TILING
+
     assert TILING == tiling
