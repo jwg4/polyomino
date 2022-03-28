@@ -1,0 +1,25 @@
+name: Run all tests including slow ones
+on:
+   - pull_request
+   - push
+
+jobs:
+  testing:
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.7, 3.8]
+    env:
+        POLYOMINO_SLOW_TESTS: TRUE
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install poetry
+        run: pip install poetry
+      - name: Install requirements
+        run: poetry install
+      - name: run unit tests
+        run: poetry run test
