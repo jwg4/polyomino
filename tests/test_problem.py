@@ -1,3 +1,5 @@
+from os import environ
+
 import pytest
 
 import numpy as np
@@ -133,6 +135,7 @@ def test_simple_problem_biggest_first_check_array():
     np.testing.assert_array_equal(a.sum(axis=1), expected_sums)
 
 
+@pytest.mark.skipif('POLYOMINO_SLOW_TESTS' not in environ, reason="No slow tests")
 def test_problem_with_no_mandatory_tiles():
     tileset = Tileset([], ALL_PENTOMINOS, [DOMINO])
     board = Rectangle(20, 20)
@@ -170,6 +173,7 @@ def test_output_problem_array_round_trip():
     np.testing.assert_array_equal(result, problem.array)
 
 
+@pytest.mark.skipif('POLYOMINO_SLOW_TESTS' not in environ, reason="No slow tests")
 @settings(deadline=None, suppress_health_check=[HealthCheck.filter_too_much])
 @given(integers(2, 10), integers(2, 25), integers(2, 25))
 def test_right_number_of_tile_positions(l, x, y):
@@ -195,6 +199,7 @@ def test_not_a_single_tile_fits():
         problem.make_problem()
 
 
+@pytest.mark.skipif('POLYOMINO_SLOW_TESTS' not in environ, reason="No slow tests")
 @settings(deadline=None, suppress_health_check=[HealthCheck.filter_too_much])
 @example([(0, 0), (1, 0), (2, 0), (3, 0)], 2, 2)
 @given(polyominos, integers(2, 15), integers(2, 15))

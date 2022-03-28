@@ -1,6 +1,9 @@
 from datetime import timedelta
+from os import environ
 
 import numpy as np
+
+import pytest
 
 from hypothesis import given, settings
 from hypothesis.strategies import integers
@@ -37,6 +40,7 @@ def test_tile_chessboard_check_problem():
     assert len(problem.key) == problem.array.shape[0]
 
 
+@pytest.mark.skipif('POLYOMINO_SLOW_TESTS' not in environ, reason="No slow tests")
 @given(x=integers(0, 3), y=integers(0, 3))
 @settings(deadline=timedelta(milliseconds=1000))
 def test_tile_chessboard_minus_square(x, y):
