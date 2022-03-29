@@ -12,7 +12,7 @@ jobs:
     env:
         POLYOMINO_SLOW_TESTS: TRUE
     runs-on: ubuntu-18.04
-    timeout: 5
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
