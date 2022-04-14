@@ -1,6 +1,7 @@
 import numpy as np
 
 from exact_cover import get_exact_cover
+from exact_cover.helpers import split_problem
 
 from .error import CantPlaceSinglePiece
 from .solution import Solution
@@ -75,6 +76,14 @@ class TilingProblem(object):
 
     def set_name(self, name):
         self._name = name
+
+    def split(self, at_least=1):
+        arrays = split_problem(self.array, at_least)
+        for array in arrays:
+            problem = TilingProblem(self.board, self.tileset)
+            problem.array = array
+            problem.key = self.key
+            yield problem
 
     @property
     def size(self):
