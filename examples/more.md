@@ -1,7 +1,6 @@
 ```python
 >>> from polyomino.board import Irregular, Rectangle
 >>> from polyomino.constant import TETROMINOS
-
 ```
 
 ```python
@@ -42,7 +41,6 @@
 + +-+ +-+ +-+ +-+-+ +-+ +
 | |     | |     |     | |
 +-+-+-+-+-+-+-+-+-+-+-+-+
-
 ```
 
 ```python
@@ -104,5 +102,4 @@
 +-+ +-+ +
   | | | |
   +-+ +-+
-
 ```
