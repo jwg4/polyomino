@@ -1,3 +1,4 @@
+```python
 >>> from polyomino.constant import TETROMINOS
 >>> from polyomino.board import Rectangle
 >>> tile = TETROMINOS['T']
@@ -16,3 +17,4 @@
 + +-+ +-+
 | |     |
 +-+-+-+-+
+```
