@@ -1,3 +1,8 @@
+# Easy example
+
+This shows a simple example of how to use the module.
+
+```
 >>> from polyomino.constant import TETROMINOS
 >>> from polyomino.board import Rectangle
 >>> tile = TETROMINOS['T']
@@ -16,3 +21,5 @@
 + +-+ +-+
 | |     |
 +-+-+-+-+
+
+```
