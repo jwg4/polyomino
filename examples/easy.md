@@ -1,3 +1,7 @@
+# Easy example
+
+This shows a simple example of how to use the module.
+
 ```python
 >>> from polyomino.constant import TETROMINOS
 >>> from polyomino.board import Rectangle
