@@ -13,7 +13,7 @@ Note that each tile can play one of several roles in a tiling problem. It could 
 ## Design
 Both polyominos and boards are represented internally as lists of integer tuples (x, y). There are constants defined for all polyominos up to pentominos in polyomino.constant
 
-The search algorithm used for searching for tilings is 'Algorithm X', also known as 'Dancing Links' from the famous paper by Knuth (https://arxiv.org/abs/cs/0011047). The paper suggests polyomino tilings and related problems as examples of exact cover problems which can be solved by the algorithm. There are more details about how the algorithm works on the homepage of the exact-cover package, https://github.com/jwg4/exact-cover
+The search algorithm used for searching for tilings is 'Algorithm X', also known as 'Dancing Links' from the famous paper by Knuth (https://arxiv.org/abs/cs/0011047). The paper suggests polyomino tilings and related problems as examples of exact cover problems which can be solved by the algorithm. There are more details about how the algorithm works on the homepage of the exact-cover package, https://github.com/jwg4/exact_cover
 
 In reducing a tiling problem to an exact cover problem, each square of the shape to be covered becomes a column of the problem. Each placement of a particular tile in a particular place is a row. A row has 1s in columns corresponding to all the squares which are covered by that shape in that location.
 There can be additional columns which correspond to the use of a piece, if that piece can only be used once. Problems where each piece can be used an arbitrary number of times, do not have such columns.
