@@ -1,10 +1,10 @@
-```
+```python
 >>> from polyomino.board import Irregular, Rectangle
 >>> from polyomino.constant import TETROMINOS
 
 ```
 
-```
+```python
 >>> board = Irregular([(i, j) for i in range(0, 12) for j in range(0, 16)])
 >>> problem = board.tile_with_many(TETROMINOS['T'])
 >>> solution = problem.solve()
@@ -45,7 +45,7 @@
 
 ```
 
-```
+```python
 >>> LEFT_CAP_13_HEIGHTS = [
 ...     0, 1, 0, 1, -1, -1, -1, -1, -1, -2, -1, -2, -1
 ... ]
