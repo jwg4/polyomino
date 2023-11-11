@@ -2,6 +2,7 @@ import numpy as np
 
 from pretty_poly import make_ascii
 
+from .jupyter import board_to_png
 from .problem import TilingProblem
 from .tileset import exactly, many
 from .transform import rotations
@@ -76,6 +77,9 @@ class Shape(object):
         squares_in_pieces = (sq for piece in pieces for sq in piece)
         remainder = set(self.squares) - set(squares_in_pieces)
         return make_ascii(pieces + [remainder])
+
+    def _repr_png_(self):
+        return board_to_png(self)
 
 
 class Irregular(Shape):
