@@ -11,7 +11,7 @@ jobs:
         python-version: [3.7, 3.8]
     env:
         POLYOMINO_SLOW_TESTS: TRUE
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v2
