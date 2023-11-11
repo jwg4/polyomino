@@ -8,6 +8,8 @@ This is a package for manipulating polyominos and in particular, solving tiling 
 
 To solve a tiling problem, you need to create a 'board', the set of squares to be covered, and a 'tileset', the collection of polyominos which can be used. There are examples of the syntax to do this in examples/fluid.md The example file examples/gardner.md uses the package to solve a number of problems from the chapter on polyominos from Martin Gardner's book 'Mathematical Puzzles and Diversions'.
 
+The folder examples/ also has a couple of Jupyter notebooks: these show how you can work with basic boards and solutions, and how they can be displayed in a notebook. The notebook display should work out-of-the-box.
+
 Note that each tile can play one of several roles in a tiling problem. It could be a tile which can only appear once, as in problems like covering a chessboard with one copy of each pentomino and a square tetromino. It could be a tile which can be used an arbitrary number of times. Problems like this are often simply to cover a shape completely with copies of a single polyomino. Finally, it could be used either once or not at all. When constructing a tileset, it is possible to include tiles in any of these three classes.
 
 ## Design
