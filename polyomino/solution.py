@@ -1,5 +1,7 @@
 from pretty_poly import make_ascii
 
+from .jupyter import solution_to_png
+
 
 class Solution(object):
     def __init__(self, tiling, board):
@@ -14,3 +16,6 @@ class Solution(object):
 
     def _gen_python(self):
         yield "TILING = %s" % (repr(self.tiling),)
+
+    def _repr_png_(self):
+        return solution_to_png(self)
