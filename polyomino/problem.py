@@ -1,6 +1,7 @@
 import numpy as np
 
 from exact_cover import get_exact_cover
+from exact_cover.error import NoSolution
 
 from .error import CantPlaceSinglePiece
 from .solution import Solution
@@ -60,7 +61,10 @@ class TilingProblem(object):
 
     def solve(self):
         self.make_problem()
-        solution = get_exact_cover(self.array)
+        try:
+            solution = get_exact_cover(self.array)
+        except NoSolution:
+            return None
         tiling = [self.key[s] for s in solution]
         if tiling:
             return Solution(tiling, self.board)
