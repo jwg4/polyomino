@@ -5,7 +5,7 @@
 ```
 
 ```python
->>> board = Irregular([(i, j) for i in range(0, 12) for j in range(0, 16)])
+>>> board = Rectangle(12, 16)
 >>> problem = board.tile_with_many(TETROMINOS['T'])
 >>> solution = problem.solve()
 >>> print(solution.display())
