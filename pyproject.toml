@@ -16,11 +16,11 @@ test = 'run_tests:run_tests'
 doctest = 'run_tests:run_doctests'
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^6.2.1"
+pytest = "^7.0"
 hypothesis = "^6.0.2"
-pytest-profiling = "^1.7.0"
 black = "^21.6b0"
-pytest-fail-slow = ">=0.2.0,<0.3.0"
+pytest-profiling = "^1.8.1"
+pytest-fail-slow = "^0.6.0"
 
 [tool.poetry.group.jupyter.dependencies]
 jupyter = "^1.0.0"
