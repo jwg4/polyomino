@@ -33,4 +33,5 @@ To run the tests locally:
 ```
 poetry install --with dev
 poetry run test
+poetry run doctest
 ```
