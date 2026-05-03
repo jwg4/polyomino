@@ -26,3 +26,12 @@ A heuristic for searches involving a limited number of monominos (single squares
 
 ## Style note
 We (try to) spell 'polyominos' without an 'e' everywhere, by analogy with 'dominos'.
+
+## Development
+To run the tests locally:
+
+```
+poetry install --with dev
+poetry run test
+poetry run doctest
+```
